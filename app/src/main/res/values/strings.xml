@@ -24,4 +24,6 @@
     <string name="password_tidak_sama">Password tidak sama</string>
     <string name="register_gagal">Register Gagal</string>
     <string name="register_sukses">Register Sukses</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
