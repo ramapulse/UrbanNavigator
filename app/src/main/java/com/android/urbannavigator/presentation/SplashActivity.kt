@@ -10,6 +10,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.android.urbannavigator.R
 import com.android.urbannavigator.databinding.ActivitySplashBinding
+import com.android.urbannavigator.presentation.auth.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class SplashActivity : AppCompatActivity() {
 
@@ -22,18 +24,15 @@ class SplashActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         Handler(Looper.getMainLooper()).postDelayed({
-//            if(FirebaseAuth.getInstance().currentUser != null){
-//                val intent = Intent(this, MainActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            }else{
-//                val intent = Intent(this, WelcomeActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            }
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 3000)
+            if(FirebaseAuth.getInstance().currentUser != null){
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else{
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }, 2500)
     }
 }

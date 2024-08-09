@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">Urban Navigator</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="masukkan_password">Masukkan Password</string>
+    <string name="belum_punya_akun">Belum punya akun?</string>
+    <string name="register">Register</string>
+    <string name="masukkan_email">Masukkan Email</string>
+    <string name="lupa_password">Lupa password?</string>
+    <string name="masukkan_username">Masukkan Username</string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="masukkan_ulang_password">Masukkan Ulang Password</string>
+    <string name="sudah_punya_akun">Sudah Punya Akun?</string>
+    <string name="loading">Loading...</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="error_field_kosong">Field ini tidak boleh kosong</string>
+    <string name="email_harus_valid">Email harus valid</string>
+    <string name="sukses_reset_password">Sukses, cek email untuk link reset password.</string>
+    <string name="error_coba_lagi_nanti">Error, coba lagi nanti.</string>
+    <string name="login_gagal">Login Gagal</string>
+    <string name="login_sukses">Login Sukses</string>
+    <string name="password_tidak_sama">Password tidak sama</string>
+    <string name="register_gagal">Register Gagal</string>
+    <string name="register_sukses">Register Sukses</string>
 </resources>
