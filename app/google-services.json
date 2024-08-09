@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "619995420691",
+    "project_id": "urbannavigator-1ee9d",
+    "storage_bucket": "urbannavigator-1ee9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619995420691:android:fdf90e9c4c0967f0ce07e6",
+        "android_client_info": {
+          "package_name": "com.android.urbannavigator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0Je_OCShdLA4KVFJBTmmSZ5R6h8XAWIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
