@@ -42,7 +42,7 @@ class EventAdapter(private val chooseCallback : (Event) -> Unit):
         fun bind(event: Event, tamanList: List<Taman>) {
             binding.tvEventName.text = event.nama
             Glide.with(binding.root.context).load(event.foto)
-                .diskCacheStrategy(DiskCacheStrategy.DATA).override(300).into(binding.ivEvent)
+                .diskCacheStrategy(DiskCacheStrategy.DATA).override(700).into(binding.ivEvent)
             binding.tvPeriodeEvent.text = "${event.tanggalMulai} - \n${event.tanggalSelesai}"
             binding.tvNamaTaman.text = tamanList.first { it.tamanId == event.tamanId }.nama
             binding.root.setOnClickListener {

@@ -38,6 +38,22 @@ class MainViewModel: ViewModel() {
 
     private val _errorResetApp = MutableLiveData<Boolean>()
     val errorResetApp: LiveData<Boolean> get() = _errorResetApp
+    private var searchText: String = ""
+
+    private val _filteredTamanList = MutableLiveData<List<Taman>>()
+    val filteredTamanList: LiveData<List<Taman>> get() = _filteredTamanList
+
+    fun searchPets(query: String) {
+        searchText = query
+        applySearchTamanFilters()
+    }
+
+    private fun applySearchTamanFilters() {
+        val filteredList = _tamanList.value?.filter { taman ->
+            val matchesSearch = taman.nama.contains(searchText, ignoreCase = true)
+            matchesSearch }
+        _filteredTamanList.value = filteredList ?: listOf()
+    }
 
     init {
         observeCurrentUser()
@@ -58,6 +74,7 @@ class MainViewModel: ViewModel() {
                 }
                 _loading.value = false
                 _tamanList.value = tamanList
+                applySearchTamanFilters()
             }
 
             override fun onCancelled(error: DatabaseError) {

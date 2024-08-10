@@ -36,7 +36,7 @@ class TamanAdapter(private val chooseCallback : (Taman) -> Unit):
         fun bind(taman: Taman) {
             binding.tvNamaTaman.text = taman.nama
             Glide.with(binding.root.context).load(taman.listGambar.get(0))
-                .diskCacheStrategy(DiskCacheStrategy.DATA).override(300).into(binding.ivTaman)
+                .diskCacheStrategy(DiskCacheStrategy.DATA).override(500).into(binding.ivTaman)
             binding.tvDescTaman.text = taman.deskripsi
             binding.root.setOnClickListener {
                 chooseCallback.invoke(taman)
