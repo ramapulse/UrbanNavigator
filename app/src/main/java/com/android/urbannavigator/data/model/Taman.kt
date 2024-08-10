@@ -8,6 +8,8 @@ data class Taman(
     val tamanId: String,
     val listGambar: List<String>,
     val nama: String,
+    val hariBuka: String,
+    val sampaiHariBuka: String,
     val jamBuka: String,
     val jamTutup: String,
     val deskripsi: String,

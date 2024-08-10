@@ -14,7 +14,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="120dp"
+            >
 
             <ImageView
                 android:id="@+id/ivForest"
@@ -106,34 +108,44 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivForest">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="12dp"
-                    app:layout_constraintEnd_toStartOf="@id/btnNotif"
-                    app:layout_constraintStart_toEndOf="@id/ivUserProfile"
-                    app:layout_constraintTop_toTopOf="@id/ivUserProfile"
-                    app:layout_constraintBottom_toBottomOf="@id/ivUserProfile"
-                    android:text="Pilihan Taman Bandung"
-                    android:textSize="17sp"
-                    android:layout_marginHorizontal="16dp"
-                    android:includeFontPadding="false"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textColor="@color/gray" />
+                    >
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pilihan Taman Bandung"
+                            android:textSize="17sp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textColor="@color/gray" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toStartOf="@id/btnNotif"
-                    app:layout_constraintStart_toEndOf="@id/ivUserProfile"
-                    app:layout_constraintTop_toTopOf="@id/ivUserProfile"
-                    app:layout_constraintBottom_toBottomOf="@id/ivUserProfile"
-                    android:text="Jelajahi taman-taman indah di Bandung"
-                    android:textSize="12sp"
-                    android:layout_marginHorizontal="16dp"
-                    android:includeFontPadding="false"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/sky_blue_detail" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Jelajahi taman-taman indah di Bandung"
+                            android:textSize="12sp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="@color/sky_blue_detail" />
+                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/btnSeePark"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_button_go"
+                        />
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvTamanBandung"
@@ -144,6 +156,101 @@
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="2"
                     tools:listitem="@layout/item_layout_taman"
+                    />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Event Taman"
+                            android:textSize="17sp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textColor="@color/gray" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Telurusi berbagai event yang berlangsung/ akan datang di Taman Kota Bandung"
+                            android:textSize="12sp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="@color/sky_blue_detail" />
+                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/btnSeeEvent"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_button_go"
+                        />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvEventPark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="2"
+                    android:layout_margin="16dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_layout_event"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Postingan Taman"
+                            android:textSize="17sp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textColor="@color/gray" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Temukan berbagai pengalaman dari komunitas mengenai taman"
+                            android:textSize="12sp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="@color/sky_blue_detail" />
+                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/btnSeePost"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_button_go"
+                        />
+                </LinearLayout>
+
+                <include
+                    layout = "@layout/layout_post_home"
                     />
 
             </LinearLayout>

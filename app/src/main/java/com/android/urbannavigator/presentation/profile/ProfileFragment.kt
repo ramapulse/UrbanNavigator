@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.android.urbannavigator.R
 import com.android.urbannavigator.data.model.User
@@ -23,6 +25,8 @@ import com.android.urbannavigator.databinding.DialogChangeEmailBinding
 import com.android.urbannavigator.databinding.DialogConfirmPasswordBinding
 import com.android.urbannavigator.databinding.FragmentProfileBinding
 import com.android.urbannavigator.presentation.LoadingDialog
+import com.android.urbannavigator.presentation.MainActivity
+import com.android.urbannavigator.presentation.MainViewModel
 import com.android.urbannavigator.presentation.SplashActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -40,7 +44,7 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private val profileView: ProfileViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
     private var editMode: Boolean = false
     private var localPhotoPath: Uri? = null
 
@@ -60,22 +64,14 @@ class ProfileFragment : Fragment() {
             showLogoutDialog()
         }
 
-        profileView.errorMsg.observe(viewLifecycleOwner){
-            makeToast(it)
-        }
-
-        val loadingDialog = LoadingDialog(requireContext())
-        profileView.loading.observe(viewLifecycleOwner){
-            if(it) loadingDialog.startLoadingDialog() else loadingDialog.dismissDialog()
-        }
-
-        profileView.getCurrentUser()
-        profileView.currentUser.observe(viewLifecycleOwner){
+        mainViewModel.currentUser.observe(viewLifecycleOwner) { user ->
+            Log.d("Profile Fragment", "observer mainviewmodel")
+            val it = user!!
             initChangeEmailButton(it)
             initSaveButton(it)
 
             Glide.with(requireContext()).load(it.profilePic).centerCrop().skipMemoryCache(true)
-                .override(350,350).diskCacheStrategy(DiskCacheStrategy.NONE).placeholder(R.drawable.img_default_profile)
+                .override(350,350).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).placeholder(R.drawable.img_default_profile)
                 .into(binding.ivUserProfile)
 
             binding.etUsername.editText?.setText(it.username)
@@ -97,8 +93,8 @@ class ProfileFragment : Fragment() {
                     binding.radioGenderMale.isChecked = false
                 }
             }
-
         }
+
         editMode = false
         switchMode()
         binding.btnEditUsername.setOnClickListener {
@@ -195,7 +191,6 @@ class ProfileFragment : Fragment() {
                                                                                 loadingDialog.dismissDialog()
                                                                                 oldDialog.dismiss()
                                                                                 makeToast("Email berhasil diganti")
-                                                                                profileView.getCurrentUser()
                                                                             } else {
                                                                                 loadingDialog.dismissDialog()
                                                                                 makeToast(taskDatabase.exception?.message ?: "Error updating database")
@@ -274,7 +269,7 @@ class ProfileFragment : Fragment() {
                                             if (task.isSuccessful) {
                                                 loadingDialog.dismissDialog()
                                                 makeToast("Profile berhasil diupdate")
-                                                profileView.getCurrentUser()
+//                                                profileView.getCurrentUser()
                                             } else {
                                                 loadingDialog.dismissDialog()
                                                 makeToast("Error : ${task.exception?.message.toString()}")
@@ -305,7 +300,7 @@ class ProfileFragment : Fragment() {
                                 if (task.isSuccessful) {
                                     loadingDialog.dismissDialog()
                                     makeToast("Profile berhasil diupdate")
-                                    profileView.getCurrentUser()
+//                                    profileView.getCurrentUser()
                                 } else {
                                     loadingDialog.dismissDialog()
                                     makeToast("Error : ${task.exception?.message.toString()}")
