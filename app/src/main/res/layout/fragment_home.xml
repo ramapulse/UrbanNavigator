@@ -1,14 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/deep_blue"
     tools:context=".presentation.home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home Fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivForest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_background_forest"
+                android:adjustViewBounds="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivUserProfile"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                app:shapeAppearanceOverlay="@style/circleImageView"
+                tools:src="@tools:sample/avatars"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tvHalo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/btnNotif"
+                app:layout_constraintStart_toEndOf="@id/ivUserProfile"
+                app:layout_constraintBottom_toTopOf="@id/tvUsernameUser"
+                android:text="Halo,"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginHorizontal="8dp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/deep_blue_two" />
+
+            <TextView
+                android:id="@+id/tvUsernameUser"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toStartOf="@id/btnNotif"
+                app:layout_constraintStart_toEndOf="@id/ivUserProfile"
+                app:layout_constraintTop_toTopOf="@id/ivUserProfile"
+                app:layout_constraintBottom_toBottomOf="@id/ivUserProfile"
+                tools:text="Username"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:layout_marginHorizontal="8dp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/deep_blue_two" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnNotif"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvHalo"
+                app:layout_constraintBottom_toBottomOf="@id/tvUsernameUser"
+                android:layout_marginEnd="16dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:shapeAppearanceOverlay="@style/circleImageView"
+                    android:src="@color/deep_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_notif"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivForest">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toStartOf="@id/btnNotif"
+                    app:layout_constraintStart_toEndOf="@id/ivUserProfile"
+                    app:layout_constraintTop_toTopOf="@id/ivUserProfile"
+                    app:layout_constraintBottom_toBottomOf="@id/ivUserProfile"
+                    android:text="Pilihan Taman Bandung"
+                    android:textSize="17sp"
+                    android:layout_marginHorizontal="16dp"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/gray" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@id/btnNotif"
+                    app:layout_constraintStart_toEndOf="@id/ivUserProfile"
+                    app:layout_constraintTop_toTopOf="@id/ivUserProfile"
+                    app:layout_constraintBottom_toBottomOf="@id/ivUserProfile"
+                    android:text="Jelajahi taman-taman indah di Bandung"
+                    android:textSize="12sp"
+                    android:layout_marginHorizontal="16dp"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/sky_blue_detail" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTamanBandung"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="2"
+                    android:layout_marginHorizontal="4dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_layout_taman"
+                    />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

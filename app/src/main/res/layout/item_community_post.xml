@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp"
+    android:paddingBottom="12dp"
+    android:background="@color/white">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivUserProfile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        app:shapeAppearanceOverlay="@style/circleImageView"
+        tools:src="@tools:sample/avatars"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivUserProfile"
+        app:layout_constraintTop_toTopOf="@id/ivUserProfile"
+        app:layout_constraintBottom_toBottomOf="@id/ivUserProfile"
+        android:layout_marginHorizontal="8dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tvUsernameUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Username"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/tvLocationUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:textSize="11sp"
+            tools:text="Tangerang, Banten"
+            android:fontFamily="@font/poppins"
+            android:textStyle="italic"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivPost"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        android:layout_marginTop="12dp"
+        tools:src="@tools:sample/avatars"
+        app:layout_constraintTop_toBottomOf="@id/ivUserProfile"
+        />
+
+    <ImageView
+        android:id="@+id/ivFavorite"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivPost"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_fav_border"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivFavorite"
+        app:layout_constraintBottom_toBottomOf="@id/ivFavorite"
+        app:layout_constraintStart_toEndOf="@id/ivFavorite"
+        android:layout_marginHorizontal="8dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins"
+        tools:text="150 orang"
+        />
+
+    <TextView
+        android:id="@+id/tvDescPost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="12dp"
+        android:fontFamily="@font/poppins_medium"
+        android:includeFontPadding="false"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        tools:text="Luar biasa bagusssssssnya. Museum art yang sangat saya nikmati, karya seni, bangunan, tatanan ruang dan taman, lokasi yang harus dikunjungi kalau ke Bandung."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivFavorite"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

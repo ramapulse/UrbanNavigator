@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="6dp"
+    android:layout_marginVertical="10dp"
+    android:background="@color/white"
+    app:cardCornerRadius="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        >
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivTaman"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.RectangleCornerRadius"
+            />
+
+        <TextView
+            android:id="@+id/tvNamaTaman"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            tools:text="Taman Patung NuArt"
+            android:layout_marginTop="4dp"
+            android:textSize="13sp"
+            android:layout_marginHorizontal="8dp"
+            android:textColor="@color/deep_blue_two"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivTaman"
+            />
+
+        <TextView
+            android:id="@+id/tvDescTaman"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            tools:text="The 4-hectare park is privately funded and managed by Bali-born sculptor Nyoman Nuarta. The park is now one of the largest sculpture parks in Indonesia."
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:lines="2"
+            android:ellipsize="end"
+            android:layout_marginHorizontal="8dp"
+            android:textColor="@color/deep_blue_two"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNamaTaman"
+            />
+
+        <RatingBar
+            android:id="@+id/ratingTaman"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescTaman"
+            android:numStars="5"
+            android:stepSize="0.5"
+            tools:rating = "2.5"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            style="?android:attr/ratingBarStyleSmall"
+            android:progressTint="@color/red_app"
+            android:progressBackgroundTint="@color/dark_gray"
+            android:isIndicator="true"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/ratingTaman"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescTaman"
+            android:layout_marginTop="4dp"
+            android:layout_marginHorizontal="4dp"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="7sp"
+            android:textSize="12sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/black"
+            android:autoSizeMaxTextSize="12sp"
+            tools:text="(4,3 rb)"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
