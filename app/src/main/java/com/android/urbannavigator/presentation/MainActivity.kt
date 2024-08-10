@@ -48,6 +48,10 @@ class MainActivity : AppCompatActivity() {
         initViewModelObserver()
     }
 
+    fun switchMenu(fragmentId: Int){
+        binding.navView.selectedItemId = fragmentId
+    }
+
     private fun initViewModelObserver() {
         val loadingDialog = LoadingDialog(this)
 
@@ -74,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun restartResetAuthApp(){
+    private fun restartResetAuthApp(){
         FirebaseAuth.getInstance().signOut()
         val intent = Intent(this, SplashActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

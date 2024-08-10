@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintDimensionRatio="3:2"
-            android:layout_margin="4dp"
+            android:layout_margin="2dp"
             />
 
         <TextView
@@ -41,7 +41,7 @@
             android:textAllCaps="true"
             android:includeFontPadding="false"
             android:textColor="@color/deep_blue_two"
-            android:textSize="22sp"
+            android:textSize="20sp"
             />
 
         <LinearLayout
@@ -61,6 +61,7 @@
                 />
 
             <TextView
+                android:id="@+id/tvNamaTaman"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -79,15 +80,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:cardCornerRadius="16dp"
+            android:backgroundTint="@color/white"
             android:layout_margin="16dp"
             >
             <TextView
+                android:id="@+id/tvPeriodeEvent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="11 Jun - 24 Jun"
+                tools:text="11 Agustus 2024 - \n24 Agustus 2024"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/deep_blue_two"
                 android:padding="12dp"
+                android:textSize="12sp"
                 android:layout_gravity="center"
                 />
         </androidx.cardview.widget.CardView>
