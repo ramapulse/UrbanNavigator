@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.urbannavigator.R
 import com.android.urbannavigator.databinding.FragmentCommunityBinding
 import com.android.urbannavigator.presentation.LoadingDialog
 import com.android.urbannavigator.presentation.MainViewModel
@@ -65,6 +67,10 @@ class CommunityFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext(),)
             adapter = postAdapter
             isNestedScrollingEnabled = false
+        }
+
+        binding.btnAddPost.setOnClickListener {
+            findNavController().navigate(R.id.action_communityFragment_to_postFormFragment)
         }
 
         mainViewModel.communityList.observe(viewLifecycleOwner){ listCommunity->

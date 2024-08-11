@@ -19,7 +19,11 @@
         android:id="@+id/communityFragment"
         android:name="com.android.urbannavigator.presentation.community.CommunityFragment"
         android:label="fragment_community"
-        tools:layout="@layout/fragment_community" />
+        tools:layout="@layout/fragment_community" >
+        <action
+            android:id="@+id/action_communityFragment_to_postFormFragment"
+            app:destination="@id/postFormFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.android.urbannavigator.presentation.profile.ProfileFragment"
@@ -30,4 +34,9 @@
         android:name="com.android.urbannavigator.presentation.event.EventFragment"
         android:label="fragment_event"
         tools:layout="@layout/fragment_event" />
+    <fragment
+        android:id="@+id/postFormFragment"
+        android:name="com.android.urbannavigator.presentation.community.PostFormFragment"
+        android:label="fragment_post_form"
+        tools:layout="@layout/fragment_post_form" />
 </navigation>

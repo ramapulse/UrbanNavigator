@@ -2,6 +2,7 @@ package com.android.urbannavigator.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.transition.Visibility
 import com.android.urbannavigator.R
 import com.android.urbannavigator.data.model.User
 import com.android.urbannavigator.databinding.ActivityMainBinding
@@ -44,6 +46,15 @@ class MainActivity : AppCompatActivity() {
         navView.itemIconTintList = null
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.homeFragment || destination.id == R.id.parkFragment || destination.id == R.id.eventFragment
+                || destination.id == R.id.profileFragment || destination.id == R.id.communityFragment) {
+                binding.navView.visibility = View.VISIBLE
+            } else {
+                binding.navView.visibility = View.GONE
+            }
+        }
 
         initViewModelObserver()
     }

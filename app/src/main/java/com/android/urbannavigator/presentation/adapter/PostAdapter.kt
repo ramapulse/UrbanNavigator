@@ -10,6 +10,9 @@ import com.android.urbannavigator.databinding.ItemCommunityPostBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.auth.FirebaseAuth
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class PostAdapter(private val chooseCallback : (Post) -> Unit):
     RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
@@ -54,6 +57,13 @@ class PostAdapter(private val chooseCallback : (Post) -> Unit):
                 .diskCacheStrategy(DiskCacheStrategy.DATA).override(350).placeholder(R.drawable.img_default_profile)
                 .centerCrop().error(R.drawable.img_default_profile)
                 .into(binding.ivUserProfile)
+
+            val date = Date(post.waktu)
+
+            val dateFormat = SimpleDateFormat("dd MMMM yyyy HH:mm", Locale("id", "ID"))
+            val formattedDate = dateFormat.format(date)
+
+            binding.tvPostTime.text = formattedDate
 
             if(post.penyukaPost.isNotEmpty()){
                 if(post.penyukaPost.size > 3){

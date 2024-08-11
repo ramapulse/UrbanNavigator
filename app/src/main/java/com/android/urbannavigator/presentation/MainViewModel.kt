@@ -83,6 +83,7 @@ class MainViewModel: ViewModel() {
                         postList.add(post)
                     }
                 }
+                postList.sortByDescending { it.waktu }
                 _loading.value = false
                 _communityList.value = postList
             }
