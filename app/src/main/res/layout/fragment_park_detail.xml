@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".presentation.park.ParkDetailFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="120dp"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/topRadiusDecor"
+                android:src="@color/deep_blue_two"
+                />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/topRadiusDecor"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.TopRadius"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="-4dp"
+                app:layout_constraintTop_toBottomOf="@id/imageCardLayout"
+                android:src="@color/white"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imageCardLayout"
+                app:cardCornerRadius="16dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:elevation="0dp"
+                app:layout_constraintDimensionRatio="3:2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+                <com.smarteist.autoimageslider.SliderView
+                    android:id="@+id/imageSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:sliderAnimationDuration="600"
+                    app:sliderAutoCycleDirection="back_and_forth"
+                    app:sliderAutoCycleEnabled="true"
+                    app:sliderIndicatorAnimationDuration="600"
+                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorSelectedColor="@color/deep_blue_two"
+                    app:sliderIndicatorUnselectedColor="@color/sky_blue_three"
+                    app:sliderScrollTimeInSec="1"
+                    app:sliderStartAutoCycle="true" />
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/btn_back"
+                android:elevation="3dp"
+                />
+
+            <TextView
+                android:id="@+id/tvParkName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Taman Patung NuArt"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="22sp"
+                android:includeFontPadding="false"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/topRadiusDecor"
+                />
+
+            <RatingBar
+                android:id="@+id/ratingTaman"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvParkName"
+                android:numStars="5"
+                android:stepSize="0.5"
+                tools:rating = "2.5"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                style="?android:attr/ratingBarStyleSmall"
+                android:progressTint="@color/red_app"
+                android:progressBackgroundTint="@color/dark_gray"
+                android:isIndicator="true"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/ratingTaman"
+                app:layout_constraintEnd_toStartOf="@id/btnLihatUlasan"
+                app:layout_constraintTop_toBottomOf="@id/tvParkName"
+                android:layout_marginTop="4dp"
+                android:layout_marginHorizontal="8dp"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="7sp"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
+                android:autoSizeMaxTextSize="12sp"
+                tools:text="(4,3 rb)"
+                />
+
+            <TextView
+                android:id="@+id/btnLihatUlasan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "@string/lihat_ulasan"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvParkName"
+                android:layout_marginEnd="16dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/blue_two"
+                />
+
+            <LinearLayout
+                android:id="@+id/layoutAlamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/ratingTaman"
+                >
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_location"
+                    />
+
+                <TextView
+                    android:id="@+id/tvAlamatTaman"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:includeFontPadding="false"
+                    tools:text="Setra Duta Raya No.L6, Ciwaruga, Kec. Parongpong, Bandung, Jawa Barat 40151"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/deep_blue_two"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/layoutAlamat">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="73dp"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="8dp"
+                    android:gravity="center"
+                    android:background="@drawable/detail_box_one"
+                    android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Hari Buka"
+                    android:textAlignment="center"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/dark_gray"
+                    />
+
+                <TextView
+                    android:id="@+id/tvHariBuka"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:includeFontPadding="false"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue"
+                    android:textSize="12sp"
+                    tools:text="Selasa - Jumat" />
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="73dp"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="8dp"
+                    android:gravity="center"
+                    android:background="@drawable/detail_box_one"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Jam Buka"
+                        android:textAlignment="center"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/dark_gray"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvJamBuka"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:includeFontPadding="false"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"
+                        tools:text="09.00 AM - 05.00 PM" />
+                </LinearLayout>
+            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDeskripsiTaman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="NuArt Sculpture Park adalah sebuah museum galeri seni patung yang terletak di bagian Bandung Utara, Jawa Barat, Indonesia. NuArt Sculpture Park pertama kali dibuka pada tahun 2000. Tempat ini merupakan pusat seni patung karya Nyoman Nuarta. Di dalam gallery menampilkan karya–karya patung hasil Nyoman Nuarta dari awal karier hingga karya terbaru sebagai pemeran utama. Selain museum gallery, di sini juga merupakan tempat proses pembuatan patung karya Nyoman Nuarta itu sendiri."
+                    android:fontFamily="@font/poppins"
+                    android:layout_marginHorizontal="4dp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="16dp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/btnSeeOnGmaps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="@drawable/deepblue_box_10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/ratingTaman"
+                    >
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_location"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:includeFontPadding="false"
+                        android:text="Lihat di Google Maps"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/white"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Melihat kerusakan pada fasilitas taman?"
+                    android:layout_marginHorizontal="4dp"
+                    android:textColor="@color/red_app"
+                    android:textAlignment="center"
+                    android:includeFontPadding="false"
+                    android:textSize="12sp"
+                    android:layout_marginTop="16dp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/btnReportForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="@drawable/bluetrans_box_10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/ratingTaman"
+                    >
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_report"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:includeFontPadding="false"
+                        android:text="Laporkan Kerusakan"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/deep_blue_two"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="24dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Event"
+                            android:textSize="16sp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textColor="@color/deep_blue_two" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Telurusi event yang berlangsung/ akan datang di NuArt Sculpture Park"
+                            android:textSize="12sp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/poppins"
+                            android:textColor="@color/blue" />
+                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/btnSeeEvent"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_button_go"
+                        />
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvEventPark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="1"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_layout_event"
+                    />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

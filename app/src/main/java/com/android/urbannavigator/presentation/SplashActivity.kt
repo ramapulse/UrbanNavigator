@@ -13,6 +13,7 @@ import com.android.urbannavigator.R
 import com.android.urbannavigator.data.model.Event
 import com.android.urbannavigator.data.model.Post
 import com.android.urbannavigator.data.model.Taman
+import com.android.urbannavigator.data.model.Ulasan
 import com.android.urbannavigator.databinding.ActivitySplashBinding
 import com.android.urbannavigator.presentation.auth.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -109,6 +110,28 @@ class SplashActivity : AppCompatActivity() {
 //
 //
 //        newPostRef.setValue(post).addOnCompleteListener { task ->
+//            if (task.isSuccessful) {
+//                Toast.makeText(this, "Sukses", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+
+
+//        val database = FirebaseDatabase.getInstance()
+//        val ulasanRef = database.getReference("Ulasan")
+//        val newUlasanRef = ulasanRef.push()
+//        val ulasanId = newUlasanRef.key ?: ""
+//
+//        val ulasan = Ulasan(
+//            ulasanId,
+//            System.currentTimeMillis(),
+//            5.0f,
+//            "Bagus banget",
+//            "Indah, suasana enak, sangat artistik. Bintang 5/5.",
+//            FirebaseAuth.getInstance().currentUser?.uid?:"",
+//            "-O3wWCW6w35SIHHk48A0"
+//        )
+//
+//        newUlasanRef.setValue(ulasan).addOnCompleteListener { task ->
 //            if (task.isSuccessful) {
 //                Toast.makeText(this, "Sukses", Toast.LENGTH_SHORT).show()
 //            }

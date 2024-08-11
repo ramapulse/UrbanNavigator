@@ -14,7 +14,11 @@
         android:id="@+id/parkFragment"
         android:name="com.android.urbannavigator.presentation.park.ParkFragment"
         android:label="fragment_park"
-        tools:layout="@layout/fragment_park" />
+        tools:layout="@layout/fragment_park" >
+        <action
+            android:id="@+id/action_parkFragment_to_parkDetailFragment"
+            app:destination="@id/parkDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/communityFragment"
         android:name="com.android.urbannavigator.presentation.community.CommunityFragment"
@@ -39,4 +43,13 @@
         android:name="com.android.urbannavigator.presentation.community.PostFormFragment"
         android:label="fragment_post_form"
         tools:layout="@layout/fragment_post_form" />
+    <fragment
+        android:id="@+id/parkDetailFragment"
+        android:name="com.android.urbannavigator.presentation.park.ParkDetailFragment"
+        android:label="fragment_park_detail"
+        tools:layout="@layout/fragment_park_detail" >
+        <argument
+            android:name="tamanId"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.urbannavigator.databinding.FragmentParkBinding
 import com.android.urbannavigator.presentation.MainViewModel
@@ -33,7 +34,8 @@ class ParkFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val tamanAdapter = TamanAdapter {taman ->
-            makeToast("taman terpilih ${taman.nama}")
+            val toDetailFragment = ParkFragmentDirections.actionParkFragmentToParkDetailFragment(taman.tamanId)
+            findNavController().navigate(toDetailFragment)
         }
 
         binding.rvPark.apply {

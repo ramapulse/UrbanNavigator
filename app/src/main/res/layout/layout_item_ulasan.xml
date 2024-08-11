@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:paddingBottom="16dp"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivUserProfile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        app:shapeAppearanceOverlay="@style/circleImageView"
+        tools:src="@tools:sample/avatars"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <RatingBar
+        android:id="@+id/ratingTaman"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivUserProfile"
+        app:layout_constraintBottom_toBottomOf="@id/ivUserProfile"
+        android:layout_marginEnd="16dp"
+        android:numStars="5"
+        android:stepSize="0.5"
+        tools:rating = "2.5"
+        android:layout_marginStart="12dp"
+        style="?android:attr/ratingBarStyleSmall"
+        android:progressTint="@color/red_app"
+        android:progressBackgroundTint="@color/dark_gray"
+        android:isIndicator="true"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/ratingTaman"
+        app:layout_constraintStart_toEndOf="@id/ivUserProfile"
+        app:layout_constraintTop_toTopOf="@id/ivUserProfile"
+        app:layout_constraintBottom_toBottomOf="@id/ivUserProfile"
+        android:layout_marginHorizontal="8dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tvUsernameUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Username"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/tvLocationUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:textSize="11sp"
+            tools:text="Tangerang, Banten"
+            android:fontFamily="@font/poppins"
+            android:textStyle="italic"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvJudulUlasan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Bagus banget!"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivUserProfile"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:textSize="15sp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/tvDescUlasan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Terakhir berkunjung kesini kurang lebih empat tahun yang lalu. Akhir bulan kemarin kesini lagi dengan mengajak anak remaja saya yang sangat terkesan."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvJudulUlasan"
+        android:layout_marginHorizontal="16dp"
+        android:textSize="12sp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/black"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

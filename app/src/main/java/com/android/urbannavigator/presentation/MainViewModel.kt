@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.android.urbannavigator.data.model.Event
 import com.android.urbannavigator.data.model.Post
 import com.android.urbannavigator.data.model.Taman
+import com.android.urbannavigator.data.model.Ulasan
 import com.android.urbannavigator.data.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -21,6 +22,7 @@ class MainViewModel: ViewModel() {
     private val tamanRef: DatabaseReference = database.getReference("Taman")
     private val eventRef: DatabaseReference = database.getReference("Event")
     private val postRef: DatabaseReference = database.getReference("Post")
+    private val ulasanRef: DatabaseReference = database.getReference("Ulasan")
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -35,6 +37,8 @@ class MainViewModel: ViewModel() {
 
     private val _userList = MutableLiveData<List<User>>()
     val userList: LiveData<List<User>> get() = _userList
+    private val _ulasanList = MutableLiveData<List<Ulasan>>()
+    val ulasanList: LiveData<List<Ulasan>> get() = _ulasanList
 
     private val _eventList = MutableLiveData<List<Event>>()
     val eventList: LiveData<List<Event>> get() = _eventList
@@ -70,6 +74,30 @@ class MainViewModel: ViewModel() {
         observeEventList()
         observePostsList()
         observeUserList()
+        observeUlasanList()
+    }
+
+    private fun observeUlasanList() {
+        _loading.value = true
+        ulasanRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val listUlasan = mutableListOf<Ulasan>()
+                for (ulasanSnapshot in snapshot.children) {
+                    val ulasan = ulasanSnapshot.getValue(Ulasan::class.java)
+                    if (ulasan != null) {
+                        listUlasan.add(ulasan)
+                    }
+                }
+                listUlasan.sortByDescending { it.waktu }
+                _loading.value = false
+                _ulasanList.value = listUlasan
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                _errorMsg.value = error.message
+                _loading.value = false
+            }
+        })
     }
 
     private fun observePostsList() {
