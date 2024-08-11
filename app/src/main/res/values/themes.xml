@@ -24,6 +24,12 @@
         <item name="cornerFamilyBottomRight">rounded</item>
         <item name="cornerSizeBottomRight">36dp</item></style>
 
+    <style name="ShapeAppearanceOverlay.App.TopRadius" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopLeft">36dp</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopRight">36dp</item></style>
+
     <style name="ShapeAppearanceOverlay.App.RectangleCornerRadius" parent="">
         <item name="cornerFamilyTopRight">rounded</item>
         <item name="cornerSizeTopRight">16dp</item>

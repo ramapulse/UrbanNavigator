@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.android.urbannavigator.R
 import com.android.urbannavigator.data.model.Event
+import com.android.urbannavigator.data.model.Post
 import com.android.urbannavigator.data.model.Taman
 import com.android.urbannavigator.databinding.ActivitySplashBinding
 import com.android.urbannavigator.presentation.auth.LoginActivity
@@ -85,6 +86,29 @@ class SplashActivity : AppCompatActivity() {
 //
 //
 //        newTamanRef.setValue(event).addOnCompleteListener { task ->
+//            if (task.isSuccessful) {
+//                Toast.makeText(this, "Sukses", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+
+
+//        val database = FirebaseDatabase.getInstance()
+//        val postRef = database.getReference("Post")
+//        val newPostRef = postRef.push()
+//        val postId = newPostRef.key ?: ""
+//
+//        val post = Post(
+//            postId,
+//            FirebaseAuth.getInstance().currentUser?.uid ?:"",
+//            "-O3wWCW6w35SIHHk48A0",
+//            listOf(),
+//            "test",
+//            "Kemarin masuk ke dalam lobby parknya, jujur saya tercengang banget dengan berbagai patung yang di perlihatkan, sungguh kreatif!",
+//            System.currentTimeMillis(),
+//        )
+//
+//
+//        newPostRef.setValue(post).addOnCompleteListener { task ->
 //            if (task.isSuccessful) {
 //                Toast.makeText(this, "Sukses", Toast.LENGTH_SHORT).show()
 //            }

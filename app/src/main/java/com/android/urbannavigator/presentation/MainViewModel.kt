@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.urbannavigator.data.model.Event
+import com.android.urbannavigator.data.model.Post
 import com.android.urbannavigator.data.model.Taman
 import com.android.urbannavigator.data.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -19,6 +20,8 @@ class MainViewModel: ViewModel() {
     private val userRef: DatabaseReference = database.getReference("Users")
     private val tamanRef: DatabaseReference = database.getReference("Taman")
     private val eventRef: DatabaseReference = database.getReference("Event")
+    private val postRef: DatabaseReference = database.getReference("Post")
+
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private val _currentUser = MutableLiveData<User>()
@@ -26,6 +29,12 @@ class MainViewModel: ViewModel() {
 
     private val _tamanList = MutableLiveData<List<Taman>>()
     val tamanList: LiveData<List<Taman>> get() = _tamanList
+
+    private val _communityList = MutableLiveData<List<Post>>()
+    val communityList: LiveData<List<Post>> get() = _communityList
+
+    private val _userList = MutableLiveData<List<User>>()
+    val userList: LiveData<List<User>> get() = _userList
 
     private val _eventList = MutableLiveData<List<Event>>()
     val eventList: LiveData<List<Event>> get() = _eventList
@@ -59,6 +68,52 @@ class MainViewModel: ViewModel() {
         observeCurrentUser()
         observeTamanList()
         observeEventList()
+        observePostsList()
+        observeUserList()
+    }
+
+    private fun observePostsList() {
+        _loading.value = true
+        postRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val postList = mutableListOf<Post>()
+                for (postSnapshot in snapshot.children) {
+                    val post = postSnapshot.getValue(Post::class.java)
+                    if (post != null) {
+                        postList.add(post)
+                    }
+                }
+                _loading.value = false
+                _communityList.value = postList
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                _errorMsg.value = error.message
+                _loading.value = false
+            }
+        })
+    }
+
+    private fun observeUserList() {
+        _loading.value = true
+        userRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val listUser = mutableListOf<User>()
+                for (userSnapshot in snapshot.children) {
+                    val user = userSnapshot.getValue(User::class.java)
+                    if (user != null) {
+                        listUser.add(user)
+                    }
+                }
+                _loading.value = false
+                _userList.value = listUser
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                _errorMsg.value = error.message
+                _loading.value = false
+            }
+        })
     }
 
     private fun observeTamanList() {

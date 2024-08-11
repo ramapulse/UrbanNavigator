@@ -11,5 +11,5 @@ data class Post(
     val penyukaPost: List<String> = listOf(),
     val urlFoto: String = "",
     val deskripsi: String = "",
-    val waktu: String = ""
+    val waktu: Long = 0
 ): Parcelable
