@@ -11,6 +11,9 @@ import com.android.urbannavigator.databinding.ItemLayoutTamanBinding
 import com.android.urbannavigator.databinding.LayoutItemUlasanBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class UlasanAdapter(private val chooseCallback : (Ulasan) -> Unit):
@@ -56,6 +59,12 @@ class UlasanAdapter(private val chooseCallback : (Ulasan) -> Unit):
             binding.tvJudulUlasan.text = ulasan.judul
             binding.tvDescUlasan.text = ulasan.komen
             binding.ratingTaman.rating = ulasan.rating
+            val date = Date(ulasan.waktu)
+
+            val dateFormat = SimpleDateFormat("dd MMMM yyyy HH:mm", Locale("id", "ID"))
+            val formattedDate = dateFormat.format(date)
+
+            binding.tvUlasanDate.text = formattedDate
             binding.root.setOnClickListener {
                 chooseCallback.invoke(ulasan)
             }

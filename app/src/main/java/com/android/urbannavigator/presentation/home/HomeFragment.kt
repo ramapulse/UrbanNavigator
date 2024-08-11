@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.urbannavigator.R
@@ -38,7 +39,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         tamanAdapter = TamanAdapter {taman ->
-            makeToast("taman terpilih ${taman.nama}")
+            val toTamanDetailFragment = HomeFragmentDirections.actionHomeFragmentToParkDetailFragment(taman.tamanId)
+            findNavController().navigate(toTamanDetailFragment)
         }
 
         val eventAdapter = EventAdapter{ event ->
@@ -55,6 +57,10 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = eventAdapter
             isNestedScrollingEnabled = false
+        }
+
+        mainViewModel.ulasanList.observe(viewLifecycleOwner){
+            tamanAdapter.submitUlasan(it)
         }
 
         mainViewModel.currentUser.observe(viewLifecycleOwner) { user ->

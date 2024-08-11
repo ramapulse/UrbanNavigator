@@ -44,6 +44,11 @@ class ParkDetailFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        binding.btnLihatUlasan.setOnClickListener {
+            val toUlasanFragment = ParkDetailFragmentDirections.actionParkDetailFragmentToUlasanFragment(dataName)
+            findNavController().navigate(toUlasanFragment)
+        }
+
         val eventAdapter = EventAdapter{ event ->
             makeToast("event terpilih ${event.nama}")
         }
@@ -67,6 +72,15 @@ class ParkDetailFragment : Fragment() {
 
             initView(currentTaman)
         }
+
+        mainViewModel.ulasanList.observe(viewLifecycleOwner){
+            val currentUlasanList = it.filter { ulasan -> ulasan.tamanId ==  dataName}
+            val score = currentUlasanList.map { ulasan -> ulasan.rating }.average().toFloat()
+
+            binding.ratingTaman.rating = score
+            binding.tvRatingCount.text = if(currentUlasanList.isEmpty()) "Belum ada ulasan" else "(${currentUlasanList.size} rating)"
+        }
+
 
         mainViewModel.eventList.observe(viewLifecycleOwner){
             val currentEvent = it.first{ event -> event.tamanId == dataName}

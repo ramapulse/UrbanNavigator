@@ -48,6 +48,10 @@ class ParkFragment : Fragment() {
             tamanAdapter.submitList(listTaman)
         }
 
+        mainViewModel.ulasanList.observe(viewLifecycleOwner){
+            tamanAdapter.submitUlasan(it)
+        }
+
         binding.svTaman.setOnClickListener {
             binding.svTaman.isIconified= false
             binding.svTaman.requestFocus()

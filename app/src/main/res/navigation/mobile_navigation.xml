@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.android.urbannavigator.presentation.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_parkDetailFragment"
+            app:destination="@id/parkDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/parkFragment"
         android:name="com.android.urbannavigator.presentation.park.ParkFragment"
@@ -48,6 +52,30 @@
         android:name="com.android.urbannavigator.presentation.park.ParkDetailFragment"
         android:label="fragment_park_detail"
         tools:layout="@layout/fragment_park_detail" >
+        <argument
+            android:name="tamanId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_parkDetailFragment_to_ulasanFragment"
+            app:destination="@id/ulasanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ulasanFragment"
+        android:name="com.android.urbannavigator.presentation.park.UlasanFragment"
+        android:label="fragment_ulasan"
+        tools:layout="@layout/fragment_ulasan" >
+        <argument
+            android:name="tamanId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_ulasanFragment_to_ulasanFormFragment"
+            app:destination="@id/ulasanFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ulasanFormFragment"
+        android:name="com.android.urbannavigator.presentation.park.UlasanFormFragment"
+        android:label="fragment_ulasan_form"
+        tools:layout="@layout/fragment_ulasan_form" >
         <argument
             android:name="tamanId"
             app:argType="string" />
