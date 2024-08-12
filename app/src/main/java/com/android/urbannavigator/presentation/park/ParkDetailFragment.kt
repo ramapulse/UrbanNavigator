@@ -17,6 +17,7 @@ import com.android.urbannavigator.databinding.FragmentParkDetailBinding
 import com.android.urbannavigator.presentation.MainViewModel
 import com.android.urbannavigator.presentation.adapter.EventAdapter
 import com.android.urbannavigator.presentation.adapter.SliderAdapter
+import com.android.urbannavigator.presentation.event.EventFragmentDirections
 import com.smarteist.autoimageslider.SliderView
 
 
@@ -55,7 +56,8 @@ class ParkDetailFragment : Fragment() {
         }
 
         val eventAdapter = EventAdapter{ event ->
-            makeToast("event terpilih ${event.nama}")
+            findNavController().navigate(
+                ParkDetailFragmentDirections.actionParkDetailFragmentToEventDetailFragment(event))
         }
         binding.rvEventPark.apply {
             layoutManager = LinearLayoutManager(requireContext())

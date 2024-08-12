@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_parkDetailFragment"
             app:destination="@id/parkDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/parkFragment"
@@ -41,7 +44,11 @@
         android:id="@+id/eventFragment"
         android:name="com.android.urbannavigator.presentation.event.EventFragment"
         android:label="fragment_event"
-        tools:layout="@layout/fragment_event" />
+        tools:layout="@layout/fragment_event" >
+        <action
+            android:id="@+id/action_eventFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/postFormFragment"
         android:name="com.android.urbannavigator.presentation.community.PostFormFragment"
@@ -61,6 +68,9 @@
         <action
             android:id="@+id/action_parkDetailFragment_to_formKerusakanFragment"
             app:destination="@id/formKerusakanFragment" />
+        <action
+            android:id="@+id/action_parkDetailFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/ulasanFragment"
@@ -91,5 +101,17 @@
         <argument
             android:name="tamanId"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventDetailFragment"
+        android:name="com.android.urbannavigator.presentation.event.EventDetailFragment"
+        android:label="fragment_event_detail"
+        tools:layout="@layout/fragment_event_detail" >
+        <argument
+            android:name="currentEvent"
+            app:argType="com.android.urbannavigator.data.model.Event" />
+        <action
+            android:id="@+id/action_eventDetailFragment_to_parkDetailFragment"
+            app:destination="@id/parkDetailFragment" />
     </fragment>
 </navigation>

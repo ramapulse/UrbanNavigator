@@ -16,6 +16,7 @@ import com.android.urbannavigator.presentation.MainActivity
 import com.android.urbannavigator.presentation.MainViewModel
 import com.android.urbannavigator.presentation.adapter.EventAdapter
 import com.android.urbannavigator.presentation.adapter.TamanAdapter
+import com.android.urbannavigator.presentation.event.EventFragmentDirections
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
@@ -44,7 +45,8 @@ class HomeFragment : Fragment() {
         }
 
         val eventAdapter = EventAdapter{ event ->
-            makeToast("event terpilih ${event.nama}")
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToEventDetailFragment(event))
         }
 
         binding.rvTamanBandung.apply {

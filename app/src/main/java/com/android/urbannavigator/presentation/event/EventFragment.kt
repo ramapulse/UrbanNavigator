@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.urbannavigator.databinding.FragmentEventBinding
@@ -35,7 +36,8 @@ class EventFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val eventAdapter = EventAdapter {event ->
-            makeToast("event terpilih ${event.nama}")
+            findNavController().navigate(
+                EventFragmentDirections.actionEventFragmentToEventDetailFragment(event))
         }
 
         binding.rvEvent.apply {
