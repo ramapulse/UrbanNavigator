@@ -28,4 +28,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profil_saya">Profil Saya</string>
     <string name="lihat_ulasan"><u>Lihat Ulasan</u></string>
+
+    <string-array name="post_filter_array">
+        <item>Semua</item>
+        <item>Postingan User Lain</item>
+        <item>Postingan Sendiri</item>
+    </string-array>
 </resources>

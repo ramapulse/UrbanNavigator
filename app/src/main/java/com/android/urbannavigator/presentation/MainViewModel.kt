@@ -57,13 +57,37 @@ class MainViewModel: ViewModel() {
     private val _errorResetApp = MutableLiveData<Boolean>()
     val errorResetApp: LiveData<Boolean> get() = _errorResetApp
     private var searchText: String = ""
+    private var tamanId: String = ""
+    private var postTamanId: String = ""
+    private var filterPostPosition: Int = 0
 
     private val _filteredTamanList = MutableLiveData<List<Taman>>()
     val filteredTamanList: LiveData<List<Taman>> get() = _filteredTamanList
 
+    private val _filteredEventList = MutableLiveData<List<Event>>()
+    val filteredEventList: LiveData<List<Event>> get() = _filteredEventList
+
+    private val _filteredPostList = MutableLiveData<List<Post>>()
+    val filteredPostList: LiveData<List<Post>> get() = _filteredPostList
+
     fun searchPets(query: String) {
         searchText = query
         applySearchTamanFilters()
+    }
+
+    fun filterEvent(newTamanId: String){
+        tamanId = newTamanId
+        applyEventFilters()
+    }
+
+    fun filterPostTaman(newTamanId: String){
+        postTamanId = newTamanId
+        applyPostFilters()
+    }
+
+    fun filterPost(position: Int){
+        filterPostPosition = position
+        applyPostFilters()
     }
 
     private fun applySearchTamanFilters() {
@@ -71,6 +95,29 @@ class MainViewModel: ViewModel() {
             val matchesSearch = taman.nama.contains(searchText, ignoreCase = true)
             matchesSearch }
         _filteredTamanList.value = filteredList ?: listOf()
+    }
+
+    private fun applyPostFilters(){
+        val filteredList = _communityList.value?.filter { post ->
+            val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?:""
+            val matchesOtherUser = post.userId != currentUserId
+            val matchesMyUser = post.userId == currentUserId
+            val userBoolean = if(filterPostPosition ==0) true
+            else if(filterPostPosition==1)
+                matchesOtherUser else
+                matchesMyUser
+            val matchesTaman = post.tamanId == postTamanId
+            val tamanBoolean = if(postTamanId.isBlank() || postTamanId =="") true else matchesTaman
+
+             tamanBoolean && userBoolean}
+        _filteredPostList.value = filteredList ?: listOf()
+    }
+
+    private fun applyEventFilters(){
+        val filteredList = _eventList.value?.filter { event ->
+            val matchesSearch = event.tamanId == tamanId
+            if(tamanId.isBlank() || tamanId =="") true else matchesSearch }
+        _filteredEventList.value = filteredList ?: listOf()
     }
 
     init {
@@ -143,6 +190,7 @@ class MainViewModel: ViewModel() {
                 postList.sortByDescending { it.waktu }
                 _loading.value = false
                 _communityList.value = postList
+                applyPostFilters()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -210,6 +258,7 @@ class MainViewModel: ViewModel() {
                 }
                 _loading.value = false
                 _eventList.value = eventList
+                applyEventFilters()
             }
 
             override fun onCancelled(error: DatabaseError) {

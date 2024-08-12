@@ -12,6 +12,5 @@ data class User(
     val birthDate: String = "",
     val location: String = "",
     val email: String = "",
-    val uid: String = "",
-    val notification: Boolean? = null
+    val uid: String = ""
 ): Parcelable
