@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.urbannavigator.data.model.Event
+import com.android.urbannavigator.data.model.Komentar
 import com.android.urbannavigator.data.model.Post
 import com.android.urbannavigator.data.model.Taman
 import com.android.urbannavigator.data.model.Ulasan
@@ -23,6 +24,8 @@ class MainViewModel: ViewModel() {
     private val eventRef: DatabaseReference = database.getReference("Event")
     private val postRef: DatabaseReference = database.getReference("Post")
     private val ulasanRef: DatabaseReference = database.getReference("Ulasan")
+    private val komentarRef: DatabaseReference = database.getReference("Komentar")
+
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -42,6 +45,8 @@ class MainViewModel: ViewModel() {
 
     private val _eventList = MutableLiveData<List<Event>>()
     val eventList: LiveData<List<Event>> get() = _eventList
+    private val _komentarList = MutableLiveData<List<Komentar>>()
+    val komentarList: LiveData<List<Komentar>> get() = _komentarList
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
@@ -75,6 +80,30 @@ class MainViewModel: ViewModel() {
         observePostsList()
         observeUserList()
         observeUlasanList()
+        observeKomentarList()
+    }
+
+    private fun observeKomentarList() {
+        _loading.value = true
+        komentarRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val listKomentar = mutableListOf<Komentar>()
+                for (komentarSnapshot in snapshot.children) {
+                    val komentar = komentarSnapshot.getValue(Komentar::class.java)
+                    if (komentar != null) {
+                        listKomentar.add(komentar)
+                    }
+                }
+                listKomentar.sortedBy { it.waktu }
+                _loading.value = false
+                _komentarList.value = listKomentar
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                _errorMsg.value = error.message
+                _loading.value = false
+            }
+        })
     }
 
     private fun observeUlasanList() {

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.urbannavigator.R
+import com.android.urbannavigator.data.model.Komentar
 import com.android.urbannavigator.data.model.Post
 import com.android.urbannavigator.data.model.User
 import com.android.urbannavigator.databinding.ItemCommunityPostBinding
@@ -14,11 +15,17 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class PostAdapter(private val chooseCallback : (Post) -> Unit):
+class PostAdapter(private val chooseCallback : (Post) -> Unit, private val commentCallback : (Post) -> Unit):
     RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
     private var postList: List<Post> = listOf()
     private var userList: List<User> = listOf()
+    private var komentarList: List<Komentar> = listOf()
+
+    fun submitKomentarList(komentars: List<Komentar>){
+        komentarList = komentars
+        notifyDataSetChanged()
+    }
 
     fun submitList(posts: List<Post>) {
         postList = posts
@@ -32,20 +39,25 @@ class PostAdapter(private val chooseCallback : (Post) -> Unit):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = ItemCommunityPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, chooseCallback)
+        return PostViewHolder(binding, chooseCallback, commentCallback)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bind(postList[position], userList)
+        holder.bind(postList[position], userList, komentarList)
     }
 
     override fun getItemCount(): Int = postList.size
 
     class PostViewHolder(private val binding: ItemCommunityPostBinding,
-                          private val chooseCallback : (Post) -> Unit
+                          private val chooseCallback : (Post) -> Unit,
+                         private val commentCallback : (Post) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(post: Post, allUser: List<User>) {
+        fun bind(post: Post, allUser: List<User>,
+                 allComment: List<Komentar>) {
             val posterUser = allUser.first { it.uid == post.userId }
+            val allCurrentComment = allComment.filter {
+                it.postId == post.postId
+            }
             binding.tvUsernameUser.text = posterUser.username
             binding.tvLocationUser.text = posterUser.location
 
@@ -69,15 +81,20 @@ class PostAdapter(private val chooseCallback : (Post) -> Unit):
                 if(post.penyukaPost.size > 3){
                     val takeThreeUser = post.penyukaPost.take(3)
                     val allUserName = allUser.filter { takeThreeUser.contains(it.uid) }
-                    binding.tvLikeCount.text = allUserName.joinToString(separator = ", ") { it.username } + " dan ${post.penyukaPost.size - 3} orang lainnya."
+                    binding.tvLikeCount.text = "Disukai oleh " +allUserName.joinToString(separator = ", ") { it.username } + " dan ${post.penyukaPost.size - 3} orang lainnya."
                 }else{
                     val allUserName = allUser.filter { post.penyukaPost.contains(it.uid) }
-                    binding.tvLikeCount.text = allUserName.joinToString(separator = ", ") { it.username }
+                    binding.tvLikeCount.text = "Disukai oleh " +allUserName.joinToString(separator = ", ") { it.username }
                 }
             }else{
                 binding.tvLikeCount.text = "Belum ada like"
             }
 
+            binding.tvCommentCount.text = if(allCurrentComment.isNotEmpty())"(${allCurrentComment.size} Komentar)" else "(0 Komentar)"
+
+            binding.btnComment.setOnClickListener {
+                commentCallback.invoke(post)
+            }
             if(post.penyukaPost.contains(FirebaseAuth.getInstance().currentUser?.uid)){
                 binding.ivFavorite.setImageResource(R.drawable.ic_fav)
             }else{

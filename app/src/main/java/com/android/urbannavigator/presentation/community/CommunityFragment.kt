@@ -39,7 +39,7 @@ class CommunityFragment : Fragment() {
 
         val loadingDialog = LoadingDialog(requireContext())
 
-        val postAdapter = PostAdapter {post ->
+        val postAdapter = PostAdapter ({post ->
             val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
             if(currentUserUid != null){
                 loadingDialog.startLoadingDialog()
@@ -61,7 +61,9 @@ class CommunityFragment : Fragment() {
                         }
                     }
             }
-        }
+        }, {
+            findNavController().navigate(CommunityFragmentDirections.actionCommunityFragmentToKomentarFragment(it.postId))
+        })
 
         binding.rvPost.apply {
             layoutManager = LinearLayoutManager(requireContext(),)
@@ -79,6 +81,10 @@ class CommunityFragment : Fragment() {
 
         mainViewModel.userList.observe(viewLifecycleOwner){ listUser ->
             postAdapter.submitUserList(listUser)
+        }
+
+        mainViewModel.komentarList.observe(viewLifecycleOwner){
+            postAdapter.submitKomentarList(it)
         }
     }
 

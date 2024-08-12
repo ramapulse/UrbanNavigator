@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_communityFragment_to_postFormFragment"
             app:destination="@id/postFormFragment" />
+        <action
+            android:id="@+id/action_communityFragment_to_komentarFragment"
+            app:destination="@id/komentarFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -113,5 +116,14 @@
         <action
             android:id="@+id/action_eventDetailFragment_to_parkDetailFragment"
             app:destination="@id/parkDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/komentarFragment"
+        android:name="com.android.urbannavigator.presentation.community.KomentarFragment"
+        android:label="fragment_komentar"
+        tools:layout="@layout/fragment_komentar" >
+        <argument
+            android:name="postId"
+            app:argType="string" />
     </fragment>
 </navigation>
