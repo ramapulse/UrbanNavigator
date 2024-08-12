@@ -9,6 +9,7 @@ data class FormKerusakan(
     val tamanId: String,
     val userId: String,
     val judul: String,
+    val gambar: String,
     val deskripsi: String,
-    val tanggal: String
+    val waktu: Long
 ): Parcelable

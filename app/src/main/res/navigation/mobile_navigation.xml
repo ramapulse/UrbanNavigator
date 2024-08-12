@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_parkDetailFragment_to_ulasanFragment"
             app:destination="@id/ulasanFragment" />
+        <action
+            android:id="@+id/action_parkDetailFragment_to_formKerusakanFragment"
+            app:destination="@id/formKerusakanFragment" />
     </fragment>
     <fragment
         android:id="@+id/ulasanFragment"
@@ -76,6 +79,15 @@
         android:name="com.android.urbannavigator.presentation.park.UlasanFormFragment"
         android:label="fragment_ulasan_form"
         tools:layout="@layout/fragment_ulasan_form" >
+        <argument
+            android:name="tamanId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/formKerusakanFragment"
+        android:name="com.android.urbannavigator.presentation.park.FormKerusakanFragment"
+        android:label="fragment_form_kerusakan"
+        tools:layout="@layout/fragment_form_kerusakan" >
         <argument
             android:name="tamanId"
             app:argType="string" />

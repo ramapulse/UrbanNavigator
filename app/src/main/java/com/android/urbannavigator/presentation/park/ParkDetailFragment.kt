@@ -49,6 +49,11 @@ class ParkDetailFragment : Fragment() {
             findNavController().navigate(toUlasanFragment)
         }
 
+        binding.btnReportForm.setOnClickListener {
+            val toLaporan = ParkDetailFragmentDirections.actionParkDetailFragmentToFormKerusakanFragment(dataName)
+            findNavController().navigate(toLaporan)
+        }
+
         val eventAdapter = EventAdapter{ event ->
             makeToast("event terpilih ${event.nama}")
         }
