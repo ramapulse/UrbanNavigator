@@ -69,6 +69,20 @@
                 app:layout_constraintBottom_toBottomOf="@id/ivHeader"
                 />
 
+            <Spinner
+                android:id="@+id/tamanSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:spinnerMode="dropdown"
+                android:background="@drawable/edit_text_box"
+                android:popupBackground="@drawable/edit_text_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDescHeader"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvEvent"
                 android:layout_width="match_parent"
@@ -78,7 +92,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginHorizontal="10dp"
                 tools:listitem="@layout/item_layout_event"
-                app:layout_constraintTop_toBottomOf="@id/tvDescHeader"
+                app:layout_constraintTop_toBottomOf="@id/tamanSpinner"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

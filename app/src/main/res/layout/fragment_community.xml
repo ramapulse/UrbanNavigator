@@ -70,13 +70,41 @@
                 android:textColor="@color/deep_blue_two"
                 />
 
+            <Spinner
+                android:id="@+id/filterPostSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:spinnerMode="dropdown"
+                android:background="@drawable/edit_text_box"
+                android:popupBackground="@drawable/edit_text_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/whiteRadiusImg"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                />
+
+            <Spinner
+                android:id="@+id/filterPostTaman"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:spinnerMode="dropdown"
+                android:background="@drawable/edit_text_box"
+                android:popupBackground="@drawable/edit_text_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/filterPostSpinner"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/whiteRadiusImg"
+                app:layout_constraintTop_toBottomOf="@id/filterPostTaman"
                 android:layout_marginTop="16dp"
                 tools:listitem="@layout/item_community_post"
                 />

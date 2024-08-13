@@ -3,6 +3,13 @@
     <style name="Base.Theme.UrbanNavigator" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/sky_blue_three</item>
+        <item name="colorOnPrimary">@color/deep_blue_two</item>
+
+        <item name="colorSecondary">@color/deep_blue_two</item>
+        <item name="colorSecondaryVariant">@color/blue</item>
+        <item name="colorOnSecondary">@color/blue_trans_70</item>
     </style>
 
     <style name="Theme.UrbanNavigator" parent="Base.Theme.UrbanNavigator">

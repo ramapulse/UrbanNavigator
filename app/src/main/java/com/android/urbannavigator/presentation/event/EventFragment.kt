@@ -1,10 +1,13 @@
 package com.android.urbannavigator.presentation.event
 
+import android.R
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -46,13 +49,35 @@ class EventFragment : Fragment() {
             isNestedScrollingEnabled = false
         }
 
-        mainViewModel.eventList.observe(viewLifecycleOwner){ listEvent->
+        mainViewModel.filteredEventList.observe(viewLifecycleOwner){ listEvent->
             eventAdapter.submitList(listEvent)
         }
 
         mainViewModel.tamanList.observe(viewLifecycleOwner){ listTaman ->
             eventAdapter.submitTamanList(listTaman)
+
+            val placeholder = "Semua Taman"
+            val namaTamanList = listOf(placeholder) + listTaman.map { it.nama }
+            val spinnerAdapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, namaTamanList)
+            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+            binding.tamanSpinner.adapter = spinnerAdapter
+
+            binding.tamanSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                    if (position == 0) {
+                        mainViewModel.filterEvent("")
+                    } else {
+                        val selectedTamanList = listTaman[position - 1].tamanId
+                        mainViewModel.filterEvent(selectedTamanList)
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                }
+            }
         }
+
     }
 
     private fun makeToast(msg: String) {

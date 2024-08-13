@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -75,7 +77,7 @@ class CommunityFragment : Fragment() {
             findNavController().navigate(R.id.action_communityFragment_to_postFormFragment)
         }
 
-        mainViewModel.communityList.observe(viewLifecycleOwner){ listCommunity->
+        mainViewModel.filteredPostList.observe(viewLifecycleOwner){ listCommunity->
             postAdapter.submitList(listCommunity)
         }
 
@@ -85,6 +87,47 @@ class CommunityFragment : Fragment() {
 
         mainViewModel.komentarList.observe(viewLifecycleOwner){
             postAdapter.submitKomentarList(it)
+        }
+
+        mainViewModel.tamanList.observe(viewLifecycleOwner){ listTaman ->
+            val placeholder = "Semua Taman"
+            val namaTamanList = listOf(placeholder) + listTaman.map { it.nama }
+            val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, namaTamanList)
+            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+            binding.filterPostTaman.adapter = spinnerAdapter
+
+            binding.filterPostTaman.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                    if (position == 0) {
+                        mainViewModel.filterPostTaman("")
+                    } else {
+                        val selectedTamanList = listTaman[position - 1].tamanId
+                        mainViewModel.filterPostTaman(selectedTamanList)
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                }
+            }
+        }
+
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.post_filter_array,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.filterPostSpinner.adapter = adapter
+        }
+
+        binding.filterPostSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                mainViewModel.filterPost(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
         }
     }
 
