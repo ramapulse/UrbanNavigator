@@ -12,8 +12,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.urbannavigator.R
 import com.android.urbannavigator.data.model.Taman
 import com.android.urbannavigator.databinding.FragmentParkDetailBinding
+import com.android.urbannavigator.presentation.MainActivity
 import com.android.urbannavigator.presentation.MainViewModel
 import com.android.urbannavigator.presentation.adapter.EventAdapter
 import com.android.urbannavigator.presentation.adapter.SliderAdapter
@@ -86,6 +88,10 @@ class ParkDetailFragment : Fragment() {
 
             binding.ratingTaman.rating = score
             binding.tvRatingCount.text = if(currentUlasanList.isEmpty()) "Belum ada ulasan" else "(${currentUlasanList.size} rating)"
+        }
+
+        binding.btnSeeEvent.setOnClickListener {
+            (activity as MainActivity).switchMenu(R.id.eventFragment)
         }
 
 
